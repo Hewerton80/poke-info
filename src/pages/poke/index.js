@@ -1,10 +1,14 @@
 import React, {useEffect,useState} from 'react';
 import Header from '../../components/Header';
 import { Col, Row } from '../../components/Grid/styles';
+import  CircularProgress from '../../components/Progress';
 import pokeApi from '../../services/pokeApi';
 import api from '../../services/api';
-import {useHistory} from 'react-router-dom';
-import { Main, Type} from './styles'
+import {useHistory,Link} from 'react-router-dom';
+import { Main, Type} from './styles';
+import pokebola from '../../styles/images/pokebola1.png'
+import {IoIosReturnLeft} from 'react-icons/io'
+
 
 export default (props)=>{
     const [poke,setPoke] = useState(null);
@@ -34,6 +38,8 @@ export default (props)=>{
             catch (err) {
                 if(err.response.status === 401){
                     if(err.response.data && err.response.data.msg=== 'token mal formatado'){
+                        localStorage.removeItem('UsrToken');
+                        localStorage.removeItem('UsrNick');
                         history.push('/');
                     }
                 }
@@ -41,11 +47,14 @@ export default (props)=>{
             }
         }
         getPoke()
-    },[])
+    },[props])
     return (
         <>
             <Header/>
-            <Main show={poke && !loading}>
+            {loading?
+            <CircularProgress/>
+            :
+            <Main>
                 <Row>
                     <Col xs={12}>
                         <h1 className='pokename'>
@@ -54,7 +63,7 @@ export default (props)=>{
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs={12} lg={6}>
+                    <Col xs={12} md={6}>
                         <span className="avatar">
                         <img 
                             // src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${index}.png`}
@@ -62,7 +71,7 @@ export default (props)=>{
                             src={`https://img.pokemondb.net/artwork/${poke && poke.name}.jpg`}
 
                             alt={poke && poke.name}
-                            //onError={(e)=>{e.target.src = `` }}
+                            onError={(e)=>{e.target.src = pokebola }}
                         />
                         </span>
                     </Col>
@@ -106,6 +115,14 @@ export default (props)=>{
                                 </span>
 
                             </div>
+                            <div className="att">
+                                <Link to='/'>
+                                    <button>
+                                        <IoIosReturnLeft color='#fff'/>Voltar para lista de pokémons
+                                    </button>
+                                </Link> 
+
+                            </div> 
                             {/* <div className="evolution att ">
                                 <p>
                                     Evoluções: 
@@ -144,6 +161,7 @@ export default (props)=>{
                     </Col>
                 </Row>
             </Main>
+            }
         </>
 
     )

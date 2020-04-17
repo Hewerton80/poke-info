@@ -1,43 +1,54 @@
 import React,{useState} from 'react';
 import logo from '../../styles/images/pokemon-logo.png';
-import { Link} from 'react-router-dom';
-import {FaUserAlt} from 'react-icons/fa'
+import { Link ,useHistory} from 'react-router-dom';
+import {FaUserAlt,FaBars} from 'react-icons/fa'
 import { Header } from './styles';
-import {Menu, MenuItem} from '@material-ui/core';
+import {Menu, MenuItem, Hidden } from '@material-ui/core';
 
 export default ()=>{
     const [anchorEl, setAnchorEl] = useState(null);
-    
+    const history = useHistory();
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
-
-    const handleClose = () => {
+    function handleLogin(){
+        handleClose();
+        history.push('/login');
+    }
+    function handleRegister(){
+        handleClose();
+        history.push('/register');
+    }
+    function handleLogout(){
+        handleClose();
+        localStorage.removeItem('UsrToken');
+        localStorage.removeItem('UsrNick');
+        history.push('/');
+    }
+    function handleClose(){
         setAnchorEl(null);
     };
     return (
         <Header>
             <div className="headerContainer">
                 <div className="logo">
-                    <img src={logo} alt="pokemon"/>
+                    <Link to ='/'>
+                        <img src={logo} alt="pokemon"/>
+                    </Link>
                 </div>
                 <div className="infouser">
-                        {localStorage.getItem('UsrNick')?
-                                <button >
-                                    <FaUserAlt color='#fff' />
-                                    {localStorage.getItem('UsrNick')}
-                                 </button>
-                            :
-                                <>
-                                
-                                <button onClick={handleClick}>
-                                    
-                                    Olá, visitante
-                                </button>
-
-                                    
-                                </>
-                        }
+                    <Hidden smDown>
+                        <button onClick={handleClick}>
+                            <FaUserAlt color='#fff' />
+                            {localStorage.getItem('UsrNick') ||  'Olá, visitante'}
+                        </button>
+                    </Hidden>
+                    <Hidden mdUp>
+                        <button onClick={handleClick}>
+                            <FaBars color='#fff' />
+                        </button>
+                        
+                    </Hidden>
                     <Menu
                         id="simple-menu"
                         anchorEl={anchorEl}
@@ -45,18 +56,21 @@ export default ()=>{
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={handleClose}>
-                            <Link to='/login'>
+                        {localStorage.getItem('UsrNick')?
+                        <MenuItem onClick={handleLogout}>  
+                            Fazer Logout                      
+                        </MenuItem>
+                        :
+                        <>
+                        <MenuItem onClick={handleLogin}>
                             Fazer login
-                            </Link>
-                            
                         </MenuItem>
-                        <MenuItem onClick={handleClose}>
-                            <Link to='/register'>
-                                Registrar-se
-                            </Link>
-                            
+                        <MenuItem onClick={handleRegister}>
+                            Registrar-se
                         </MenuItem>
+                        </>
+                        }
+
                     </Menu>
                     
                 </div>

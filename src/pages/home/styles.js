@@ -55,8 +55,11 @@ export const Main = styled.main`
             overflow: hidden;
             height: 180px;
             width: 180px;
+            position: relative;
             img{
+                position: absolute;
                 width:100%;
+                height: 100%;
                 transition-duration: .3s;
                 &:hover{
                     transform: scale(1.3);
@@ -109,9 +112,10 @@ export const ButtonType = styled.button`
     background: linear-gradient(${props=>typesColors[props.type][0]} 50%, ${props=>typesColors[props.type][1]}  50%);
     margin: 50px 16px 0 16px;
     transition-duration: .3s;
-    &:hover{
+    cursor: context-menu;   
+    /* &:hover{
         opacity: .7; 
         transform: scale(1.05); 
 
-    }
+    } */
 `;

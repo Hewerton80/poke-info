@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {colors, typesColors } from '../../styles/colors'
 export const Main = styled.main`
-    display: ${props=>props.show?'flex':'none'};
+    display: 'flex';
     max-width: 992px;
     flex-direction: column;
     width: 100%;
@@ -17,7 +17,7 @@ export const Main = styled.main`
     }
     span.avatar{
         width:100%;
-        margin:0 50px;
+        margin:0 50px 50px 50px;
         img{
             width:100%;
         }
@@ -25,10 +25,12 @@ export const Main = styled.main`
     .infos{
         display: flex;
         flex-direction:column;
+        margin-bottom: 50px;
         width:100%;
         border-radius:15px;
         padding: 20px 40px 40px 40px;
         border: 2px solid ${colors.prim1};
+        height: fit-content;
         .att{
             display: flex;
             align-items: flex-end;
@@ -66,6 +68,31 @@ export const Main = styled.main`
                     margin-right: 8px;
                 }       
             }
+        }
+    }
+    a{
+        width:100%;
+    }
+    button{
+        svg{
+            margin-right: 10px;
+            transform: scale(1.3);
+        }
+        width:100%;
+        margin-top: 20px;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        padding:10px;
+        font-size: 24px;
+        color: #fff;
+        border: 2px solid ${colors.prim1};
+        border-radius: 15px;
+        background: ${colors.prim1};
+        transition-duration: .3s;
+        &:hover{
+            background: ${colors.prim1};
+            opacity: .7;         
         }
     }
 
