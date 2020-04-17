@@ -13,11 +13,14 @@ import { Main , ButtonType} from './styles';
 export default ()=>{
     const [pokes,setPokes] = useState([]);
     const [load,setLoad] = useState(true);
-    const [types,setTypes] = useState([])
+    const [types,setTypes] = useState([]);
+    const [showPokes, setShowPokes] = useState(true);
+    const [showTypes, setShowTypes] = useState(false)
+    const [showAbilits, setShowAbilits] = useState(false)
+    const [abilits,setAbilits] = useState([])
     const [limit, setLimit] = useState(20);
     const [count, setCount] = useState(0)
     const [page, setPage] = useState(localStorage.getItem('page')?Number(localStorage.getItem('page')):1);
-    const [showPokes, setShowPokes] = useState(true);
     const history = useHistory()
 
     useEffect(()=>{
@@ -50,7 +53,20 @@ export default ()=>{
         }
         getTypes()
     },[types])
-
+    
+    useEffect(()=>{
+        async function getTypes(){
+            try {
+                const response = await pokeApi.get(`/ability?limit=300`);
+                //console.log('abilits: ',response.data);
+                setAbilits(response.data.results);
+            } 
+            catch (err) {
+                console.log(err);
+            }
+        }
+        getTypes()
+    },[abilits])
     function handleChange(event, page){
         setPage(page);
     }
@@ -76,19 +92,37 @@ export default ()=>{
                     <Col xs={6}>
                         <button 
                             className={`submenu ${showPokes ?'active':''}`}
-                            onClick={()=>setShowPokes(true)}
+                            onClick={()=>{
+                                setShowPokes(true);
+                                setShowTypes(false);
+                                setShowAbilits(false);
+                            }}
                         >
                             Pokémons
                         </button>
                     </Col>
                     <Col xs={6}>
                         <button 
-                            className={`submenu ${!showPokes ?'active':''}`}
-                            onClick={()=>setShowPokes(false)}
-                        >
+                            className={`submenu ${showTypes ?'active':''}`}
+                            onClick={()=>{
+                                setShowPokes(false);
+                                setShowTypes(true);
+                                setShowAbilits(false);
+                            }}                        >
                             Tipos
                         </button>
                     </Col>
+                    <Col xs={6}>
+                        <button 
+                            className={`submenu ${showAbilits ?'active':''}`}
+                            onClick={()=>{
+                                setShowPokes(false);
+                                setShowTypes(false);
+                                setShowAbilits(true);
+                            }}                         >
+                            Habilidades
+                        </button>
+                    </Col>   
                 </Row>
                 <div className={`container-poke ${showPokes ?'show':''}`}>
                     <Row>
@@ -136,7 +170,7 @@ export default ()=>{
                         />
                     </footer>
                 </div>
-                <div className={`container-type ${!showPokes ?'show':''}`}>
+                <div className={`container-type ${showTypes ?'show':''}`}>
                     <Row>
                         {
                             types.map(type=>(
@@ -149,6 +183,20 @@ export default ()=>{
                         }
                     </Row>
                 </div>
+                <div className={`container-type ${showAbilits ?'show':''}`}>
+                    <Row>
+                        {
+                            abilits.map(ability=>(
+                                <Col xs={6} sm={3} key={ability.name}>
+                                    <ButtonType type={'abilits'}>
+                                        {ability.name}
+                                    </ButtonType>
+                                </Col>
+                            ))//.filter((t,i)=>i<12)
+                        }
+                    </Row>
+                </div>
+                
 
             </Main>
             }

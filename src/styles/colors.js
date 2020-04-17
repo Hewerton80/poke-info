@@ -26,4 +26,5 @@ export const typesColors = {
     fairy:['#fdb9e9','#fdb9e9','#000'],
     unknown:['#ccc','#ccc','#000'],
     shadow:['#0a0d67','#0a0d67','#fff'],
+    abilits:[colors.prim1,colors.prim1,'#fff'],
 }

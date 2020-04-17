@@ -39,7 +39,7 @@ export default (props)=>{
             setRequesting(false);
             localStorage.setItem('UsrToken',response.data.token)
             localStorage.setItem('UsrNick',response.data.user.nick)
-            const { pokeName } = props.location.state
+            const { pokeName } = props.location.state;
             if(pokeName){
                 history.push(`/pokemon/${pokeName}`);
                 return;

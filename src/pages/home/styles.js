@@ -35,6 +35,7 @@ export const Main = styled.main`
         display: none;
         width:100%;
         flex-direction: column;
+        margin-bottom: 50px;
     }
     .show{
         display: flex;
