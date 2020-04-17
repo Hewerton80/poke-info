@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import {colors } from '../../styles/colors'
+import {colors, typesColors } from '../../styles/colors'
 export const Main = styled.main`
     display: flex;
     max-width: 992px;
     flex-direction: column;
     width: 100%;
     margin: 0 auto;
+
     button.submenu{
         display:flex;
         align-items: center;
@@ -29,24 +30,36 @@ export const Main = styled.main`
         background: ${colors.prim1}; 
         color: #FFF;
     }
+    
+    .container-poke,.container-type{
+        display: none;
+        width:100%;
+        flex-direction: column;
+    }
+    .show{
+        display: flex;
+    }
     #poke{
         margin-top: 50px;
         cursor: pointer;
-        background: #EEE;
+        border:1px solid ${colors.sec1};
         border-radius: 5px;
+        max-width: 180px;
+        
+        overflow: hidden;
         #avatar{
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
             overflow: hidden;
-            min-height: 215px;
-            min-width: 215px;
+            height: 180px;
+            width: 180px;
             img{
                 width:100%;
                 transition-duration: .3s;
                 &:hover{
-                    transform: scale(1.1);
+                    transform: scale(1.3);
                 }
             }
         }
@@ -55,10 +68,15 @@ export const Main = styled.main`
             align-items: center;
             justify-content: center;
             width:100%;
+            width: 180px;
+            overflow: hidden;
+            margin: 0 auto;
             h3{
-                padding:6px 0 12px 0;
+                font-size: 10px;
+                text-align: center;
+                padding:12px 8px;
                 font-family: 'Press Start 2P';    
-                background: -webkit-linear-gradient(#8f8f8f 50%,  #6d6E6E  50%);
+                background: -webkit-linear-gradient(${colors.sec1} 50%,  ${colors.sec2}  50%);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
             }
@@ -76,9 +94,24 @@ export const Main = styled.main`
             
         }
     }
-
-
-
-    
-
+          
 `
+export const ButtonType = styled.button`
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding:8px;
+    font-size: 16px;
+    color: ${props=>typesColors[props.type][2]};
+    border: 0;
+    border-radius: 5px;
+    background: linear-gradient(${props=>typesColors[props.type][0]} 50%, ${props=>typesColors[props.type][1]}  50%);
+    margin: 50px 16px 0 16px;
+    transition-duration: .3s;
+    &:hover{
+        opacity: .7; 
+        transform: scale(1.05); 
+
+    }
+`;
