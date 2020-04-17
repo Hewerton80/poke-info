@@ -23,12 +23,15 @@ export default ()=>{
                 </div>
                 <div className="infouser">
                         {localStorage.getItem('UsrNick')?
-                                localStorage.getItem('UsrNick')
+                                <button >
+                                    <FaUserAlt color='#fff' />
+                                    {localStorage.getItem('UsrNick')}
+                                 </button>
                             :
                                 <>
                                 
                                 <button onClick={handleClick}>
-                                <FaUserAlt color='#fff' />
+                                    
                                     Olá, visitante
                                 </button>
 

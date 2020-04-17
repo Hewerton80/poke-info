@@ -5,7 +5,6 @@ import {ContainerAuth} from "./styles"
 import logo from "../../styles/images/pokemon-logo.png"
 import {useHistory} from 'react-router-dom';
 export default (props)=>{
-    console.log('props login',props);
     const [msgErroLogin, setErroLogin] = useState('');
     const [emailLogin, setEmailLogin] = useState('');
     const [passwordLogin, setPasswordLogin] = useState('');
@@ -26,10 +25,12 @@ export default (props)=>{
             localStorage.setItem('UsrToken',response.data.token)
             localStorage.setItem('UsrNick',response.data.user.nick)
 
-            const { pokeName } = props.location.state
-            if(pokeName){
-                history.push(`/pokemon/${pokeName}`);
-                return;
+            if( props.location.state){
+                const { pokeName } = props.location.state
+                if(pokeName){
+                    history.push(`/pokemon/${pokeName}`);
+                    return;
+                }
             }
             history.push(`/`)
             
