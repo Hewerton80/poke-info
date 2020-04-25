@@ -1,7 +1,13 @@
 export const colors = {
-    prim1 : '#ef5350',
+    //prim1 : '#ef5350',
+    prim1 : '#36393E',
+    prim2 : '#36393E',
     sec1: '#6d6e6e',
-    sec2: '#8f8f8f'
+    sec2: '#8f8f8f',
+    terc1: '#F9C025',
+    quar1: '#418FBF',
+    quint1: '#4dad5b',
+    sext1: '#ee6b2f',
 }
 
 export const typesColors = {

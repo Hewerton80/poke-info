@@ -3,11 +3,13 @@ import Header from '../../components/Header';
 import { Col, Row } from '../../components/Grid/styles';
 import  CircularProgress from '../../components/Progress';
 import pokeApi from '../../services/pokeApi';
-import api from '../../services/api';
+//import api from '../../services/api';
 import {useHistory,Link} from 'react-router-dom';
-import { Main, Type} from './styles';
+import { Container, Type} from './styles';
+import { Main } from '../../components/Container/styles';
+
 import pokebola from '../../styles/images/pokebola1.png'
-import {IoIosReturnLeft} from 'react-icons/io'
+import {IoIosReturnLeft} from 'react-icons/io';
 
 
 export default (props)=>{
@@ -20,11 +22,11 @@ export default (props)=>{
         async function getPoke(){
             const {name} = props.match.params;
             try {
-                await api.get( '/poke/index',{
-                    headers:{
-                        authorization: `Bearer ${localStorage.getItem('UsrToken')}`
-                    }
-                })
+                // await api.get( '/poke/index',{
+                //     headers:{
+                //         authorization: `Bearer ${localStorage.getItem('UsrToken')}`
+                //     }
+                // })
                 const response = await pokeApi(`/pokemon/${name}`);
                 console.log('poke: ',response.data);
                 setPoke(response.data);
@@ -50,11 +52,12 @@ export default (props)=>{
     },[props])
     return (
         <>
-            <Header/>
+            <Header active='pokemons'/>
+            <Main>
             {loading?
             <CircularProgress/>
             :
-            <Main>
+            <Container>
                 <Row>
                     <Col xs={12}>
                         <h1 className='pokename'>
@@ -75,7 +78,8 @@ export default (props)=>{
                         />
                         </span>
                     </Col>
-                    <Col xs={12} lg={6}>
+                    <Col xs={12} md={6}>
+                        <div className="container-info">
 
                         <div className="infos">
                             <div className="att">
@@ -158,10 +162,12 @@ export default (props)=>{
                                 </span>
                             </div> */}
                         </div>
+                        </div>
                     </Col>
                 </Row>
-            </Main>
+            </Container>
             }
+            </Main>
         </>
 
     )

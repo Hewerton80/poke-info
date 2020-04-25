@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import {colors, typesColors } from '../../styles/colors'
-export const Main = styled.main`
+export const Container = styled.main`
     display: 'flex';
-    max-width: 992px;
     flex-direction: column;
     width: 100%;
     margin: 50px auto 0px auto;
@@ -16,57 +15,67 @@ export const Main = styled.main`
         -webkit-text-fill-color: transparent;
     }
     span.avatar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width:100%;
-        margin:0 50px 50px 50px;
+        padding: 0 16px;
+        margin-bottom:50px;
         img{
+            max-width: 400px;
             width:100%;
         }
     }
-    .infos{
+    .container-info{
         display: flex;
-        flex-direction:column;
-        margin-bottom: 50px;
-        width:100%;
-        border-radius:15px;
-        padding: 20px 40px 40px 40px;
-        border: 2px solid ${colors.prim1};
-        height: fit-content;
-        .att{
+        width: 100%;
+        padding: 0 16px;
+        .infos{
             display: flex;
-            align-items: flex-end;
-            flex-wrap: wrap;            
+            flex-direction:column;
+            margin-bottom: 50px;
             width:100%;
-            p{
-                font-size: 24px;
-                margin-top:20px;
-                margin-right: 8px;
-
-            }                
-            span{
-                font-size: 18px;
-                margin-top:25px;
-            }
-            span#ability{
-                background: ${colors.prim1};
-                padding: 5px;
-                border-radius: 5px;
-                color: #FFF;
-                margin-right: 8px;         
-            }
-
-        }
-        .evolution{
-            display: flex;
-            align-items: flex-start;
-            flex-direction: column;
-            flex-wrap: wrap;
-            span{
+            border-radius:15px;
+            padding: 20px 40px 40px 40px;
+            border: 2px solid ${colors.prim1};
+            height: fit-content;
+            .att{
                 display: flex;
-                
-                img{
-                    width: 50px;
+                align-items: flex-end;
+                flex-wrap: wrap;            
+                width:100%;
+                p{
+                    font-size: 24px;
+                    margin-top:20px;
                     margin-right: 8px;
-                }       
+
+                }                
+                span{
+                    font-size: 18px;
+                    margin-top:25px;
+                }
+                span#ability{
+                    background: ${colors.prim1};
+                    padding: 5px;
+                    border-radius: 5px;
+                    color: #FFF;
+                    margin-right: 8px;         
+                }
+
+            }
+            .evolution{
+                display: flex;
+                align-items: flex-start;
+                flex-direction: column;
+                flex-wrap: wrap;
+                span{
+                    display: flex;
+                    
+                    img{
+                        width: 50px;
+                        margin-right: 8px;
+                    }       
+                }
             }
         }
     }

@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import {colors} from   '../../styles/colors'
-
+import { lighten } from 'polished';
 export const Header = styled.header`
 
     height: 56px;
     background: ${colors.prim1};
+    background: linear-gradient( 90deg,${colors.prim2} 0%, ${colors.prim1} 100%);
     display:flex;
     justify-content: center;
     padding: 0 60px;
@@ -26,7 +27,63 @@ export const Header = styled.header`
                 width:120px;
             }
         }
-        .infouser{
+        nav{
+            display:flex;
+            height: 100%;
+            width: 100%;
+            ul{
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+                height: 100%;
+                li{
+                    height: 100%; 
+                    &:hover{
+                        background: ${lighten(0.05,colors.prim1)};
+                    }
+                    a{
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 24px;
+                        font-size: 18px;
+                        font-weight: bold;
+                        color: #fff;
+                    }  
+                }       
+                li.active{
+                    /* background: ${lighten(0.01,colors.prim1)}; */
+                    border-bottom: 4px solid;    
+                }        
+                li.pokemons{
+                    border-color: ${colors.terc1};
+                    a{
+                        color: ${colors.terc1};
+                    }
+                }
+                li.tipos{
+                    border-color: ${colors.quar1};
+                    a{
+                        color: ${colors.quar1};
+                    }
+                }
+                li.habilidades{
+                    border-color: ${colors.quint1};
+                    a{
+                        color: ${colors.quint1};
+                    }
+                }
+                li.itens{
+                    border-color: ${colors.sext1};
+                    a{
+                        color: ${colors.sext1};
+                    }
+                }
+   
+            }
+        }
+        /* .infouser{
             display:flex;
             align-items: center;
             height: 100%;
@@ -44,9 +101,9 @@ export const Header = styled.header`
                 color: #fff;
             }
             
-        }
+        } */
     }
-    li.item{
+    /* li.item{
         width: auto;
         overflow: hidden;
         font-size: 1rem;
@@ -59,5 +116,5 @@ export const Header = styled.header`
         white-space: nowrap;
         letter-spacing: 0.00938em;
         padding-bottom: 6px;
-    }
+    } */
 `

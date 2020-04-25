@@ -7,18 +7,21 @@ export const Container = styled.main`
     flex-direction: column;
     width: 100%;
     
-    .container-poke{
+    .container-item{
         display: flex;
         width:100%;
         flex-direction: column;
         margin-bottom: 50px;
     }
-    #poke{
+    #item{
         margin-top: 50px;
         cursor: pointer;
         /* border:1px solid ${colors.sec1};
         border-radius: 5px; */
-        max-width: ${dimensions.pokeWidth};
+        max-width: ${dimensions.itensWidth};
+        &:hover img{
+            transform: scale(1.3);
+        }
         
         #avatar{
             display: flex;
@@ -26,17 +29,15 @@ export const Container = styled.main`
             justify-content: center;
             flex-direction: column;
             /* overflow: hidden; */
-            height: ${dimensions.pokeWidth};
-            width: ${dimensions.pokeWidth};
+            height: ${dimensions.itensWidth};
+            width: ${dimensions.itensWidth};
             position: relative;
             img{
                 position: absolute;
-                width:100%;
-                /* height: 100%; */
+                max-width: 60px;
+                
                 transition-duration: .3s;
-                &:hover{
-                    transform: scale(1.3);
-                }
+                
             }
         }
         #name{
@@ -44,14 +45,14 @@ export const Container = styled.main`
             align-items: center;
             justify-content: center;
             width:100%;
-            width: ${dimensions.pokeWidth};
+            width: ${dimensions.itensWidth};
             overflow: hidden;
             margin: 0 auto;
             h3{
-                font-size: 16px;
+                font-size: 14px;
                 text-align: center;
                 padding:12px 8px;
-                color: ${colors.prim1};
+                color: ${colors.sec1};
             }
         }
 

@@ -38,9 +38,12 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
-  body, input, button {
+  body, input, button{
     font-size: 14px;
-    font-family:Arial, Helvetica, sans-serif;
+  }
+  body, input, button, li, a, p, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+
   }
 
   a{
