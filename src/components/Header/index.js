@@ -50,7 +50,7 @@ export default ({active})=>{
                         </li>
                         <li className={`habilidades ${active === 'habilidades'?'active':''}`}>
                             <Link to='/habilidades'>
-                                Habiidades
+                                Habilidades
                             </Link>
                         </li>
                         <li className={`itens ${active === 'itens'?'active':''}`}>
