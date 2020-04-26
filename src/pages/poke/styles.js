@@ -55,8 +55,9 @@ export const Container = styled.main`
                     margin-top:25px;
                 }
                 span#ability{
+                    font-size: 14px;
                     background: ${colors.prim1};
-                    padding: 5px;
+                    padding: 4px;
                     border-radius: 5px;
                     color: #FFF;
                     margin-right: 8px;         

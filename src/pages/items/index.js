@@ -14,6 +14,7 @@ import { Container } from './styles';
 export default ()=>{
     const [items,setItems] = useState([]);
     const [load,setLoad] = useState(true);
+    const [loadItens,setLoadItens] = useState(false);
     const [limit, setLimit] = useState(48);
     const [count, setCount] = useState(0);
     const [page, setPage] = useState(localStorage.getItem('pageItem')?Number(localStorage.getItem('pageItem')):1);
@@ -23,12 +24,14 @@ export default ()=>{
         async function getPokes(){
             localStorage.setItem('pageItem',page);
             console.log('page: ',page);
+            setLoadItens(true);
             try {
                 const response = await pokeApi(`/item?limit=${limit}&offset=${(page-1) *limit}`);
                 console.log('items: ',response.data);
                 setItems(response.data.results);
                 setCount(response.data.count);
                 setLoad(false);
+                setLoadItens(false);
             } 
             catch (err) {
                 console.log(err);
@@ -97,7 +100,7 @@ export default ()=>{
                                 count={Math.floor(count/limit)} 
                                 page={page} 
                                 onChange={handleChange} 
-                                disabled={load}
+                                disabled={loadItens}
                                 color="primary" 
                                 size="large"
                             />

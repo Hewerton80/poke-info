@@ -10,6 +10,9 @@ export const Header = styled.header`
     justify-content: center;
     padding: 0 60px;
     box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);
+    @media (max-width: 960px) {
+        padding: 0 16px;
+    }
     .headerContainer{
         display: flex;
         align-items: center;
@@ -29,6 +32,7 @@ export const Header = styled.header`
         }
         nav{
             display:flex;
+            justify-content: flex-end;
             height: 100%;
             width: 100%;
             ul{
@@ -50,7 +54,12 @@ export const Header = styled.header`
                         font-size: 18px;
                         font-weight: bold;
                         color: #fff;
-                    }  
+                        img{
+                            width: 22px;
+                            margin-right: 15px;
+                        }
+                    
+                    }
                 }       
                 li.active{
                     /* background: ${lighten(0.01,colors.prim1)}; */
@@ -80,41 +89,72 @@ export const Header = styled.header`
                         color: ${colors.sext1};
                     }
                 }
-   
             }
-        }
-        /* .infouser{
-            display:flex;
-            align-items: center;
-            height: 100%;
-            svg{
-                margin-right:15px;
-                transform: scale(1.2);
-            }
-            
-  
-            button{
-                outline: none;
-                border: none;
-                background: transparent;
-                font-size: 18px;
+            button.MuiIconButton-colorPrimary{
                 color: #fff;
             }
-            
-        } */
+        }
     }
-    /* li.item{
-        width: auto;
-        overflow: hidden;
-        font-size: 1rem;
-        box-sizing: border-box;
-        min-height: 48px;
-        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-        font-weight: 400;
-        line-height: 1.5;
-        padding-top: 6px;
-        white-space: nowrap;
-        letter-spacing: 0.00938em;
-        padding-bottom: 6px;
-    } */
-`
+`;
+
+export const Menu = styled.div`
+    display:flex;
+    flex-direction: column;
+    padding: 20px 0;
+    width: 100%;
+    background: ${colors.prim1};
+    ul{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        li{
+            width: 100%; 
+            &:hover{
+                background: ${lighten(0.05,colors.prim1)};
+            }
+            a{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                padding: 24px;
+                font-size: 18px;
+                font-weight: bold;
+                color: #fff;
+                img{
+                    width: 22px;
+                    margin-right: 15px;
+                }
+            }  
+        }       
+        li.active{
+            background: ${lighten(0.05,colors.prim1)};
+            border-bottom: 4px solid;
+        }        
+        li.pokemons{
+            border-color: ${colors.terc1};
+            a{
+                color: ${colors.terc1};
+            }
+        }
+        li.tipos{
+            border-color: ${colors.quar1};
+            a{
+                color: ${colors.quar1};
+            }
+        }
+        li.habilidades{
+            border-color: ${colors.quint1};
+            a{
+                color: ${colors.quint1};
+            }
+        }
+        li.itens{
+            border-color: ${colors.sext1};
+            a{
+                color: ${colors.sext1};
+            }
+        }
+    }
+            
+`;

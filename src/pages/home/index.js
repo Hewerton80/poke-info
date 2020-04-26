@@ -1,7 +1,7 @@
 import React, {useEffect,useState} from 'react';
 import {useHistory } from 'react-router-dom';
 import Header from '../../components/Header';
-import pokebola from '../../styles/images/pokebola1.png';
+//import pokebola from '../../styles/images/pokebola1.png';
 import { Col, Row } from '../../components/Grid/styles';
 //import BackGroundAnimation from '../../components/BackGroundAnimation';
 import pokeanimation from '../../styles/images/poke.gif';
@@ -15,6 +15,7 @@ import { Container } from './styles';
 export default ()=>{
     const [pokes,setPokes] = useState([]);
     const [load,setLoad] = useState(true);
+    const [loadPokes,setLoadPokes] = useState(false);
     const [limit, setLimit] = useState(48);
     const [count, setCount] = useState(0);
     const [page, setPage] = useState(localStorage.getItem('pagePoke')?Number(localStorage.getItem('pagePoke')):1);
@@ -24,12 +25,14 @@ export default ()=>{
         async function getPokes(){
             localStorage.setItem('pagePoke',page);
             console.log('page: ',page);
+            setLoadPokes(true);
             try {
                 const response = await pokeApi(`/pokemon?limit=${limit}&offset=${(page-1) *limit}`);
                 console.log('pokes: ',response.data);
                 setPokes(response.data.results);
                 setCount(response.data.count);
                 setLoad(false);
+                setLoadPokes(false);
             } 
             catch (err) {
                 console.log(err);
@@ -77,7 +80,7 @@ export default ()=>{
                                 const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${indexByUrl}.png`;
                                 return(
                                     <Col xs={6} sm={4} md={3} lg={2} key={poke.name}>
-                                        <div id="poke" onClick={()=>handlePoke(poke)}>
+                                        <div id="poke" onClick={()=>handlePoke(poke)} >
                                             <div  id='avatar'>
                                             {/* <BackGroundAnimation/> */}
                                                 <img 
@@ -107,7 +110,7 @@ export default ()=>{
                                 count={Math.floor(count/limit)} 
                                 page={page} 
                                 onChange={handleChange} 
-                                disabled={load}
+                                disabled={loadPokes}
                                 color="primary" 
                                 size="large"
                             />
